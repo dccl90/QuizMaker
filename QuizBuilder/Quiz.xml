@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Question>
+    <QuizQuestion>Number of wheels on a car</QuizQuestion>
+    <Options>
+      <Option correctAnswer="false">1</Option>
+      <Option correctAnswer="true">4</Option>
+      <Option correctAnswer="false">3</Option>
+      <Option correctAnswer="false">6</Option>
+    </Options>
+  </Question>
+  <Question>
+    <QuizQuestion>Number of wheels on a bike</QuizQuestion>
+    <Options>
+      <Option correctAnswer="false">false</Option>
+    </Options>
+  </Question>
+</ArrayOfQuestion>
