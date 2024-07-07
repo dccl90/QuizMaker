@@ -14,6 +14,8 @@ namespace QuizMaker
     {
          [XmlAttribute("correctAnswer")]
          public bool CorrectAnswer { get; set; }
+        [XmlAttribute("selector")]
+         public string OptionSelector { get; set; }
          [XmlText]
          public string Answer { get; set; }
 

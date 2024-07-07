@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfQuestion xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Question>
-    <QuizQuestion>Number of wheels on a car</QuizQuestion>
+    <QuizQuestion>What colour is the sky?</QuizQuestion>
     <Options>
-      <Option correctAnswer="false">1</Option>
-      <Option correctAnswer="true">4</Option>
-      <Option correctAnswer="false">3</Option>
-      <Option correctAnswer="false">6</Option>
+      <Option correctAnswer="false" selector="A">Red</Option>
+      <Option correctAnswer="true" selector="B">Blue</Option>
+      <Option correctAnswer="false" selector="C">Pink</Option>
+      <Option correctAnswer="false" selector="D">Yellow</Option>
     </Options>
   </Question>
   <Question>
-    <QuizQuestion>Number of wheels on a bike</QuizQuestion>
+    <QuizQuestion>Which options equal 4?</QuizQuestion>
     <Options>
-      <Option correctAnswer="false">false</Option>
+      <Option correctAnswer="true" selector="A">1+3</Option>
+      <Option correctAnswer="true" selector="B">2+2</Option>
+      <Option correctAnswer="false" selector="C">5+5</Option>
+      <Option correctAnswer="false" selector="D">4+4</Option>
+      <Option correctAnswer="true" selector="E">8-4</Option>
+      <Option correctAnswer="false" selector="F">6-3</Option>
+    </Options>
+  </Question>
+  <Question>
+    <QuizQuestion>How may legs does a kangaroo have?</QuizQuestion>
+    <Options>
+      <Option correctAnswer="false" selector="A">4</Option>
+      <Option correctAnswer="false" selector="B">3</Option>
+      <Option correctAnswer="true" selector="C">2</Option>
+      <Option correctAnswer="false" selector="D">1</Option>
     </Options>
   </Question>
 </ArrayOfQuestion>

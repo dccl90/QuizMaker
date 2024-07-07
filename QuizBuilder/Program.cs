@@ -10,52 +10,52 @@ namespace QuizMaker
         {
             UserInterface ui = new UserInterface();
             QuestionList ql = new QuestionList();
+            char menuInput = ui.GetMenuInput();
+            
 
-            ui.ClearConsole();
-            ui.PrintMessage(Constants.MENU_STRING);
-            char menuInput = ui.SetUserInputChar(Constants.COLON_STRING, Constants.MENU_INPUT_ERROR_STRING);
-
-            if(menuInput == Constants.CREATE_QUIZ)
-            {
-                
-                List<Question> questionsList = new List<Question>();
-
-                ui.ClearConsole();
-                int numberOfQuestions = ui.SetIntInput(
-                    Constants.INPUT_NUMBER_OF_QUESTIONS_STRING,
-                    Constants.MIN_QUESTIONS,
-                    Constants.MAX_QUESTIONS
-                );
-
-                for(int i = 0; i < numberOfQuestions; i++)
+            while(true)
+            {  
+                if(menuInput == Constants.CREATE_QUIZ)
                 {
-                    List<Option> optionsList = new List<Option>();
-                    string question = ui.SetStringInput(Constants.INPUT_QUESTION_STRING);
-                    int numberOfOption = ui.SetIntInput(
-                        Constants.INPUT_NUMBER_OF_OPTIONS_STRING,
-                        Constants.MIN_OPTIONS, 
-                        Constants.MAX_OPTIONS
-                    );
-
-                    for(int j = 0; j < numberOfOption; j++)
-                    {
-                        string option = ui.SetStringInput($"{Constants.INPUT_OPTION_STRING} {j+1}: ");
-                        bool correctAnswer = ui.SetBoolInput(Constants.INPUT_CORRECT_ANSWER_STRING);
-                        optionsList.Add(new Option { CorrectAnswer = correctAnswer , Answer = option });
-                    }
-                    ui.ClearConsole();
-
-                    questionsList.Add(new Question {QuizQuestion = question, Options=optionsList});
+                    int numberOfQuestions = ui.GetNumberOfQuestions();
+                    List<Question> questionsList = ui.GetListOfQuestions(numberOfQuestions);
+                    ql.WriteXmlFile(questionsList);
                 }
 
-                ql.WriteXmlFile(questionsList);
+                if(menuInput == Constants.TAKE_QUIZ)
+                {
+                    int points = ql.GetPoints();
+                    
+                    var questionList = ql.ReadXmlFile();
+                    int numberOfQuestions = questionList.Count;
+                    foreach(var question in questionList)
+                    {
+                        
+                        ui.PrintQuizHeader(numberOfQuestions, points);
+                        ui.PrintQuestion(question.QuizQuestion);
+                        ui.PrintOptions(question.Options);
+                        
+
+                        string selection = ui.SetUserInputSelection();
+                        bool isAnswerCorrect = ql.IsCorrectAnswer(selection, question.Options);
+                        points = ql.AddPoints(isAnswerCorrect);
+                    }
+
+                    ui.PrintFinalScore(numberOfQuestions, points);
+                    ql.ResetPoints();
+
+                }
+
+                if(menuInput == Constants.QUIT_QUIZ_MAKER)
+                {
+                    break;
+                }
+
+                menuInput = ui.GetMenuInput();
 
             }
 
-            if(menuInput == Constants.TAKE_QUIZ)
-            {
-                ql.ReadXmlFile();
-            }
+
         }
     }
 }
