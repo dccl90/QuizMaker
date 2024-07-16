@@ -9,7 +9,7 @@ namespace QuizMaker
         static void Main(string[] args)
         {
             UserInterface ui = new UserInterface();
-            QuestionList ql = new QuestionList();
+            QuizLogic ql = new QuizLogic();
             char menuInput = ui.GetMenuInput();
             
 
@@ -32,8 +32,8 @@ namespace QuizMaker
                     {
                         
                         ui.PrintQuizHeader(numberOfQuestions, points);
-                        ui.PrintQuestion(question.QuizQuestion);
-                        ui.PrintOptions(question.Options);
+                        UserInterface.PrintQuestion(question.QuizQuestion);
+                        UserInterface.PrintOptions(question.Options);
                         
 
                         string selection = ui.SetUserInputSelection();

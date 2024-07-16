@@ -12,36 +12,20 @@ namespace QuizMaker
         {
             while (true)
             {
-                string selection = SetStringInput(Constants.INPUT_ANSWER_SELECTION);
-                if(IsUserInputSelectionValid(selection))
+                string selection = SetStringInput(Strings.INPUT_ANSWER_SELECTION);
+                bool isUserSelectionValid = QuizLogic.IsUserInputSelectionValid(selection);
+                if(isUserSelectionValid)
                 {
                     return selection;
                 }
                 else
                 {
-                    PrintMessage(Constants.INPUT_ANSWER_SELECTION_ERROR);
+                    PrintMessage(Strings.INPUT_ANSWER_SELECTION_ERROR);
                 }
             }
         }
 
-        /// <summary>
-        /// Checks if the answers selected by the user are valid
-        /// </summary>
-        /// <param name="input">A string of answers</param>
-        /// <returns>A true or false value determining if the user input is valid</returns>
-        public bool IsUserInputSelectionValid(string input)
-        {
-            string[] selectionArr = input.Split(',');
-
-
-            foreach(string selection in selectionArr) 
-            {
-                if(!Constants.OPTIONS.Contains(selection.ToUpper())){
-                    return false;
-                }
-            }
-            return true;
-        }
+       
 
         /// <summary>
         /// The list of questions
@@ -54,7 +38,7 @@ namespace QuizMaker
             List<Question> questionsList = new List<Question>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                string question = SetStringInput(Constants.INPUT_QUESTION_STRING);
+                string question = SetStringInput(Strings.INPUT_QUESTION_STRING);
                 List<Option> optionsList = GetListOfOptions();
                 ClearConsole();
 
@@ -76,8 +60,8 @@ namespace QuizMaker
 
                 for (int j = 0; j < numberOfOption; j++)
                 {
-                    string option = SetStringInput($"{Constants.INPUT_OPTION_STRING} {j + 1}: ");
-                    bool correctAnswer = SetBoolInput(Constants.INPUT_CORRECT_ANSWER_STRING);
+                    string option = SetStringInput($"{Strings.INPUT_OPTION_STRING} {j + 1}: ");
+                    bool correctAnswer = SetBoolInput(Strings.INPUT_CORRECT_ANSWER_STRING);
                     optionsList.Add(new Option { CorrectAnswer = correctAnswer, OptionSelector = Constants.OPTIONS[j], Answer = option });
                 }
 
@@ -92,7 +76,7 @@ namespace QuizMaker
         {
             ClearConsole();
             int numberOfQuestions = SetIntInput(
-                    Constants.INPUT_NUMBER_OF_QUESTIONS_STRING,
+                    Strings.INPUT_NUMBER_OF_QUESTIONS_STRING,
                     Constants.MIN_QUESTIONS,
                     Constants.MAX_QUESTIONS
                 );
@@ -106,7 +90,7 @@ namespace QuizMaker
         private int GetNumberOfOptions()
         {
             int numberOfOption = SetIntInput(
-                    Constants.INPUT_NUMBER_OF_OPTIONS_STRING,
+                    Strings.INPUT_NUMBER_OF_OPTIONS_STRING,
                     Constants.MIN_OPTIONS,
                     Constants.MAX_OPTIONS
                 );
@@ -120,8 +104,8 @@ namespace QuizMaker
         public char GetMenuInput()
         {
             ClearConsole();
-            PrintMessage(Constants.MENU_STRING);
-            char menuInput = SetUserInputChar(Constants.COLON_STRING, Constants.MENU_INPUT_ERROR_STRING);
+            PrintMessage(Strings.MENU_STRING);
+            char menuInput = SetUserInputChar(Strings.COLON_STRING, Strings.MENU_INPUT_ERROR_STRING);
             return menuInput;
         }
 
@@ -153,7 +137,7 @@ namespace QuizMaker
         /// Prints the quiz question to the console
         /// </summary>
         /// <param name="question">A question</param>
-        public void PrintQuestion(string question)
+        public static void PrintQuestion(string question)
         {
             PrintMessage($"Question: {question}");
         }
@@ -162,7 +146,7 @@ namespace QuizMaker
         /// Prints a list of options to the console
         /// </summary>
         /// <param name="options">A list of options to a question</param>
-        public void PrintOptions(List<Option> options)
+        public static void PrintOptions(List<Option> options)
         {
             foreach(var option in options)
             {
@@ -174,7 +158,7 @@ namespace QuizMaker
         /// A generic method to prints a message to the console
         /// </summary>
         /// <param name="message">A messag to be printed</param>
-        public void PrintMessage(string message)
+        public static void PrintMessage(string message)
         {
             Console.WriteLine(message);
         }
@@ -212,8 +196,8 @@ namespace QuizMaker
                 }
                 else
                 {
-                    PrintMessage(Constants.INPUT_CORRECT_ANSWER_ERROR_STRING);
-                    PrintMessage(Constants.CONTINUE_STRING);
+                    PrintMessage(Strings.INPUT_CORRECT_ANSWER_ERROR_STRING);
+                    PrintMessage(Strings.CONTINUE_STRING);
                     Console.ReadLine();
                 }
             }
@@ -236,14 +220,14 @@ namespace QuizMaker
                 Console.Write(message);
                 string input = Console.ReadLine();
                 bool isInt = int.TryParse(input, out intInput);
-                isValidInput = IsValidIntInput(intInput, min, max);
+                isValidInput = QuizLogic.IsValidIntInput(intInput, min, max);
                 if(isValidInput)
                 {
                     break;
                 }
 
-                PrintMessage($"Value Must be Between {min} and {max}");
-                PrintMessage(Constants.CONTINUE_STRING);
+                PrintMessage(Strings.INPUT_NUMBER_OF_QUESTIONS_ERROR_STRING);
+                PrintMessage(Strings.CONTINUE_STRING);
                 Console.ReadLine();
                 ClearConsole();
             }
@@ -251,23 +235,7 @@ namespace QuizMaker
             return intInput;  
         }
 
-        /// <summary>
-        /// Validates the integer entered by the user
-        /// </summary>
-        /// <param name="input">The int entered by the user</param>
-        /// <param name="min">The minimum supported int</param>
-        /// <param name="max">The maximum supported int</param>
-        /// <returns>A true or false value confirming if the int is valid</returns>
-        public bool IsValidIntInput(int input, int min, int max)
-        {
-            if(input >= min && input <= max)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
+        
         /// <summary>
         /// Sets the users input as a char
         /// </summary>
@@ -285,7 +253,7 @@ namespace QuizMaker
                 string input = Console.ReadLine();
                 isChar = char.TryParse(input, out char charInput);
                 charInputUpper = Char.ToUpper(charInput);
-                isValidCharInput = IsValidMenuInput(charInputUpper);
+                isValidCharInput = QuizLogic.IsValidMenuInput(charInputUpper);
                 if (isChar && isValidCharInput)
                 {
                     break;
@@ -296,24 +264,6 @@ namespace QuizMaker
             while (!isChar || !isValidCharInput);
             
             return charInputUpper;
-        }
-
-        /// <summary>
-        /// Validats if the chat enterted by the user is valod
-        /// </summary>
-        /// <param name="charInput">The users input as a char</param>
-        /// <returns>A true or flase value confirming if the menu input is valid</returns>
-        private static bool IsValidMenuInput(char charInput)
-        {
-            if(
-                charInput == Constants.TAKE_QUIZ ||
-                charInput == Constants.CREATE_QUIZ ||
-                charInput == Constants.QUIT_QUIZ_MAKER
-            )
-            {
-                return true;
-            }
-            return false;
         }
         
         /// <summary>

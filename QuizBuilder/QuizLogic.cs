@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace QuizMaker
 {
-    public class QuestionList
+    public class QuizLogic
     {
         XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));
         int points = 0;
@@ -30,6 +30,60 @@ namespace QuizMaker
         }
 
         /// <summary>
+        /// Validats if the chat enterted by the user is valod
+        /// </summary>
+        /// <param name="charInput">The users input as a char</param>
+        /// <returns>A true or flase value confirming if the menu input is valid</returns>
+        public static bool IsValidMenuInput(char charInput)
+        {
+            if(
+                charInput == Constants.TAKE_QUIZ ||
+                charInput == Constants.CREATE_QUIZ ||
+                charInput == Constants.QUIT_QUIZ_MAKER
+            )
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Validates the integer entered by the user
+        /// </summary>
+        /// <param name="input">The int entered by the user</param>
+        /// <param name="min">The minimum supported int</param>
+        /// <param name="max">The maximum supported int</param>
+        /// <returns>A true or false value confirming if the int is valid</returns>
+        public static bool IsValidIntInput(int input, int min, int max)
+        {
+            if(input >= min && input <= max)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+         /// <summary>
+        /// Checks if the answers selected by the user are valid
+        /// </summary>
+        /// <param name="input">A string of answers</param>
+        /// <returns>A true or false value determining if the user input is valid</returns>
+        public static bool IsUserInputSelectionValid(string input)
+        {
+            string[] selectionArr = input.Split(',');
+
+
+            foreach(string selection in selectionArr) 
+            {
+                if(!Constants.OPTIONS.Contains(selection.ToUpper())){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        /// <summary>
         /// Checks the correct answers for a question
         /// </summary>
         /// <param name="options">The options selected by the user</param>
@@ -39,7 +93,7 @@ namespace QuizMaker
             List<string> correctAnswersList = new List<string>();
             foreach( var option in options)
             {
-                if(option.CorrectAnswer == true)
+                if(option.CorrectAnswer)
                 {
                     correctAnswersList.Add(option.OptionSelector);
                 }
@@ -55,7 +109,7 @@ namespace QuizMaker
         private List<string> GetInputSelectionsList(string selections)
         {   
             List<string> inputSelectionsList = new List<string>();
-            string[] inputSelectionsArray = selections.Split(',');
+            string[] inputSelectionsArray = selections.Split(Constants.COMMA);
             foreach(string selection in inputSelectionsArray)
             {
                 inputSelectionsList.Add(selection.Trim().ToUpper());
