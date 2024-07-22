@@ -160,9 +160,10 @@ namespace QuizMaker
         }
 
         /// <summary>
-        /// 
+        /// Randomizes a list of questions
         /// </summary>
-        /// <returns></returns>
+        /// <param name="questions">A list of questions</param>
+        /// <returns>A list of questions in random order</returns>
         private List<Question> ShuffleQuestions(List<Question> questions)
         {
             Random random = new Random();
@@ -177,7 +178,7 @@ namespace QuizMaker
         {
             var questionList = new List<Question>();
             if (!File.Exists(Constants.FILE_PATH))
-            {
+            {   
                 return null; 
             }
 

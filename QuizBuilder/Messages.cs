@@ -16,6 +16,7 @@ namespace QuizMaker
         public const string INPUT_CORRECT_ANSWER_ERROR_STRING = "Enter True or False";
         public const string INPUT_ANSWER_SELECTION = "Enter the Correct Answers Separated by a Comma: ";
         public const string INPUT_ANSWER_SELECTION_ERROR = "Selection Invalid, Please Enter Using the Following Format A or A,B,C";
+        public const string FILE_DOES_NOT_EXIST_ERROR_STRING = "File Does Not Exist! \nPlease Select Option C to Create a Quiz";
         public const string CONTINUE_STRING = "Press any key to continue";
 
     }

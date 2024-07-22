@@ -109,6 +109,13 @@ namespace QuizMaker
             return menuInput;
         }
 
+        public void PrintFileDoesNotExistError()
+        {
+            ClearConsole();
+            PrintMessage(Messages.FILE_DOES_NOT_EXIST_ERROR_STRING);
+            PrintMessage(Messages.CONTINUE_STRING);
+            Console.ReadLine();
+        }
 
         /// <summary>
         /// 
@@ -129,7 +136,7 @@ namespace QuizMaker
         public void PrintFinalScore(int numberOfQuestions, int points)
         {
             ClearConsole();
-            PrintMessage($"You got {points} out of {numberOfQuestions} Questions Correct");
+            PrintMessage($"You got {points} out of {numberOfQuestions} Questions Correct\n{Messages.CONTINUE_STRING}");
             Console.ReadLine();
         }
 

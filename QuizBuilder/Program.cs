@@ -27,6 +27,13 @@ namespace QuizMaker
                     int points = ql.GetPoints();
                     
                     var questionList = ql.ReadXmlFile();
+                    if(questionList is null)
+                    {
+                        ui.PrintFileDoesNotExistError();
+                        menuInput = ui.GetMenuInput();
+                        continue;
+                    }
+
                     int numberOfQuestions = questionList.Count;
                     foreach(var question in questionList)
                     {
