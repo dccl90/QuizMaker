@@ -2,7 +2,7 @@
 
 namespace QuizMaker
 {
-    public class Strings
+    public class Messages
     {
         public static string MENU_STRING = $"----Quiz Maker----\nEnter {Constants.CREATE_QUIZ} to Create a Quiz\nEnter {Constants.TAKE_QUIZ} to Take a Quiz\nEnter {Constants.QUIT_QUIZ_MAKER} to Quit";
         public static string MENU_INPUT_ERROR_STRING = $"Invalid Input\nPlease Enter {Constants.CREATE_QUIZ} to Create a Quiz, {Constants.TAKE_QUIZ} to Take a Quiz or {Constants.QUIT_QUIZ_MAKER} to Quit";

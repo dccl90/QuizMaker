@@ -12,7 +12,7 @@ namespace QuizMaker
         {
             while (true)
             {
-                string selection = SetStringInput(Strings.INPUT_ANSWER_SELECTION);
+                string selection = SetStringInput(Messages.INPUT_ANSWER_SELECTION);
                 bool isUserSelectionValid = QuizLogic.IsUserInputSelectionValid(selection);
                 if(isUserSelectionValid)
                 {
@@ -20,7 +20,7 @@ namespace QuizMaker
                 }
                 else
                 {
-                    PrintMessage(Strings.INPUT_ANSWER_SELECTION_ERROR);
+                    PrintMessage(Messages.INPUT_ANSWER_SELECTION_ERROR);
                 }
             }
         }
@@ -38,7 +38,7 @@ namespace QuizMaker
             List<Question> questionsList = new List<Question>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                string question = SetStringInput(Strings.INPUT_QUESTION_STRING);
+                string question = SetStringInput(Messages.INPUT_QUESTION_STRING);
                 List<Option> optionsList = GetListOfOptions();
                 ClearConsole();
 
@@ -60,8 +60,8 @@ namespace QuizMaker
 
                 for (int j = 0; j < numberOfOption; j++)
                 {
-                    string option = SetStringInput($"{Strings.INPUT_OPTION_STRING} {j + 1}: ");
-                    bool correctAnswer = SetBoolInput(Strings.INPUT_CORRECT_ANSWER_STRING);
+                    string option = SetStringInput($"{Messages.INPUT_OPTION_STRING} {j + 1}: ");
+                    bool correctAnswer = SetBoolInput(Messages.INPUT_CORRECT_ANSWER_STRING);
                     optionsList.Add(new Option { CorrectAnswer = correctAnswer, OptionSelector = Constants.OPTIONS[j], Answer = option });
                 }
 
@@ -76,7 +76,7 @@ namespace QuizMaker
         {
             ClearConsole();
             int numberOfQuestions = SetIntInput(
-                    Strings.INPUT_NUMBER_OF_QUESTIONS_STRING,
+                    Messages.INPUT_NUMBER_OF_QUESTIONS_STRING,
                     Constants.MIN_QUESTIONS,
                     Constants.MAX_QUESTIONS
                 );
@@ -90,7 +90,7 @@ namespace QuizMaker
         private int GetNumberOfOptions()
         {
             int numberOfOption = SetIntInput(
-                    Strings.INPUT_NUMBER_OF_OPTIONS_STRING,
+                    Messages.INPUT_NUMBER_OF_OPTIONS_STRING,
                     Constants.MIN_OPTIONS,
                     Constants.MAX_OPTIONS
                 );
@@ -104,8 +104,8 @@ namespace QuizMaker
         public char GetMenuInput()
         {
             ClearConsole();
-            PrintMessage(Strings.MENU_STRING);
-            char menuInput = SetUserInputChar(Strings.COLON_STRING, Strings.MENU_INPUT_ERROR_STRING);
+            PrintMessage(Messages.MENU_STRING);
+            char menuInput = SetUserInputChar(Messages.COLON_STRING, Messages.MENU_INPUT_ERROR_STRING);
             return menuInput;
         }
 
@@ -196,8 +196,8 @@ namespace QuizMaker
                 }
                 else
                 {
-                    PrintMessage(Strings.INPUT_CORRECT_ANSWER_ERROR_STRING);
-                    PrintMessage(Strings.CONTINUE_STRING);
+                    PrintMessage(Messages.INPUT_CORRECT_ANSWER_ERROR_STRING);
+                    PrintMessage(Messages.CONTINUE_STRING);
                     Console.ReadLine();
                 }
             }
@@ -226,8 +226,8 @@ namespace QuizMaker
                     break;
                 }
 
-                PrintMessage(Strings.INPUT_NUMBER_OF_QUESTIONS_ERROR_STRING);
-                PrintMessage(Strings.CONTINUE_STRING);
+                PrintMessage(Messages.INPUT_NUMBER_OF_QUESTIONS_ERROR_STRING);
+                PrintMessage(Messages.CONTINUE_STRING);
                 Console.ReadLine();
                 ClearConsole();
             }
