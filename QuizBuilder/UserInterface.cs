@@ -8,11 +8,11 @@ namespace QuizMaker
         /// A method for setting the users answers to a question
         /// </summary>
         /// <returns>A string with the users selections</returns>
-        public string SetUserInputSelection()
+        public string CollectUserAnswers()
         {
             while (true)
             {
-                string selection = SetStringInput(Messages.INPUT_ANSWER_SELECTION);
+                string selection = GetStringInput(Messages.INPUT_ANSWER_SELECTION);
                 bool isUserSelectionValid = QuizLogic.IsUserInputSelectionValid(selection);
                 if(isUserSelectionValid)
                 {
@@ -38,7 +38,7 @@ namespace QuizMaker
             List<Question> questionsList = new List<Question>();
             for (int i = 0; i < numberOfQuestions; i++)
             {
-                string question = SetStringInput(Messages.INPUT_QUESTION_STRING);
+                string question = GetStringInput(Messages.INPUT_QUESTION_STRING);
                 List<Option> optionsList = GetListOfOptions();
                 ClearConsole();
 
@@ -60,7 +60,7 @@ namespace QuizMaker
 
                 for (int j = 0; j < numberOfOption; j++)
                 {
-                    string option = SetStringInput($"{Messages.INPUT_OPTION_STRING} {j + 1}: ");
+                    string option = GetStringInput($"{Messages.INPUT_OPTION_STRING} {j + 1}: ");
                     bool correctAnswer = SetBoolInput(Messages.INPUT_CORRECT_ANSWER_STRING);
                     optionsList.Add(new Option { CorrectAnswer = correctAnswer, OptionSelector = Constants.OPTIONS[j], Answer = option });
                 }
@@ -105,7 +105,7 @@ namespace QuizMaker
         {
             ClearConsole();
             PrintMessage(Messages.MENU_STRING);
-            char menuInput = SetUserInputChar(Messages.COLON_STRING, Messages.MENU_INPUT_ERROR_STRING);
+            char menuInput = GetUserInputChar(Messages.COLON_STRING, Messages.MENU_INPUT_ERROR_STRING);
             return menuInput;
         }
 
@@ -168,7 +168,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="message">A message to be printed to the console</param>
         /// <returns>The users input as a string</returns>
-        public string SetStringInput(string message)
+        public string GetStringInput(string message)
         {
             Console.Write(message);
             string input = Console.ReadLine();
@@ -242,7 +242,7 @@ namespace QuizMaker
         /// <param name="message">A message to be printed in the console</param>
         /// <param name="errMessage">An error message to be printed if that input is not valid</param>
         /// <returns>The char entered by the user</returns>
-        public char SetUserInputChar(string message, string errMessage)
+        public char GetUserInputChar(string message, string errMessage)
         {
             char charInputUpper;
             bool isValidCharInput;

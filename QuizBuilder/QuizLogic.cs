@@ -160,6 +160,16 @@ namespace QuizMaker
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        private List<Question> ShuffleQuestions(List<Question> questions)
+        {
+            Random random = new Random();
+            return questions.OrderBy(x => random.NextDouble()).ToList();
+        } 
+
+        /// <summary>
         /// Reads an XML file into a list of questions
         /// </summary>
         /// <returns>A List of Questions</returns>
@@ -175,7 +185,10 @@ namespace QuizMaker
             {
                 questionList = serializer.Deserialize(file) as List<Question>;
             }
-            return questionList;
+
+            List<Question> shuffledQuestions = ShuffleQuestions(questionList);
+
+            return shuffledQuestions;
         }
 
         /// <summary>

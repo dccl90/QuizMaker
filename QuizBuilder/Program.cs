@@ -36,7 +36,7 @@ namespace QuizMaker
                         UserInterface.PrintOptions(question.Options);
                         
 
-                        string selection = ui.SetUserInputSelection();
+                        string selection = ui.CollectUserAnswers();
                         bool isAnswerCorrect = ql.IsCorrectAnswer(selection, question.Options);
                         points = ql.AddPoints(isAnswerCorrect);
                     }
