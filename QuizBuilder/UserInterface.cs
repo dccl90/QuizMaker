@@ -8,7 +8,7 @@ namespace QuizMaker
         /// A method for setting the users answers to a question
         /// </summary>
         /// <returns>A string with the users selections</returns>
-        public string CollectUserAnswers()
+        public static string CollectUserAnswers()
         {
             while (true)
             {
@@ -32,7 +32,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="numberOfQuestions">The number of questions the quiz will contain</param>
         /// <returns>The list of questions</returns>
-        public List<Question> GetListOfQuestions(int numberOfQuestions)
+        public static List<Question> GetListOfQuestions(int numberOfQuestions)
         {
    
             List<Question> questionsList = new List<Question>();
@@ -53,7 +53,7 @@ namespace QuizMaker
         /// Gets a list of options
         /// </summary>
         /// <returns>A list of options for a question</returns>
-        private List<Option> GetListOfOptions()
+        private static List<Option> GetListOfOptions()
         {
             List<Option> optionsList = new List<Option>();
             int numberOfOption = GetNumberOfOptions();
@@ -72,7 +72,7 @@ namespace QuizMaker
         /// Collects the input for the number of questions
         /// </summary>
         /// <returns>An int that represents the number of questions for a quiz</returns>
-        public int GetNumberOfQuestions()
+        public static int GetNumberOfQuestions()
         {
             ClearConsole();
             int numberOfQuestions = SetIntInput(
@@ -87,7 +87,7 @@ namespace QuizMaker
         /// Collects the input for the number of options
         /// </summary>
         /// <returns>An int that represents the number of answer options for a question</returns>
-        private int GetNumberOfOptions()
+        private static int GetNumberOfOptions()
         {
             int numberOfOption = SetIntInput(
                     Messages.INPUT_NUMBER_OF_OPTIONS_STRING,
@@ -101,7 +101,7 @@ namespace QuizMaker
         /// The menu input
         /// </summary>
         /// <returns>Returns the users input</returns>
-        public char GetMenuInput()
+        public static char GetMenuInput()
         {
             ClearConsole();
             PrintMessage(Messages.MENU_STRING);
@@ -109,7 +109,7 @@ namespace QuizMaker
             return menuInput;
         }
 
-        public void PrintFileDoesNotExistError()
+        public static void PrintFileDoesNotExistError()
         {
             ClearConsole();
             PrintMessage(Messages.FILE_DOES_NOT_EXIST_ERROR_STRING);
@@ -122,7 +122,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="numberOfQuestions"></param>
         /// <param name="points"></param>
-        public void PrintQuizHeader(int numberOfQuestions, int points)
+        public static void PrintQuizHeader(int numberOfQuestions, int points)
         {
             ClearConsole();
             PrintMessage($"Number of Questions: {numberOfQuestions}  Points: {points}");
@@ -133,7 +133,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="numberOfQuestions"></param>
         /// <param name="points"></param>
-        public void PrintFinalScore(int numberOfQuestions, int points)
+        public static void PrintFinalScore(int numberOfQuestions, int points)
         {
             ClearConsole();
             PrintMessage($"You got {points} out of {numberOfQuestions} Questions Correct\n{Messages.CONTINUE_STRING}");
@@ -175,7 +175,7 @@ namespace QuizMaker
         /// </summary>
         /// <param name="message">A message to be printed to the console</param>
         /// <returns>The users input as a string</returns>
-        public string GetStringInput(string message)
+        public static string GetStringInput(string message)
         {
             Console.Write(message);
             string input = Console.ReadLine();
@@ -188,7 +188,7 @@ namespace QuizMaker
         /// <param name="message">The message printed to the console</param>
         /// <returns></returns>
 
-        public bool SetBoolInput(string message)
+        public static bool SetBoolInput(string message)
         {
             bool boolean;
             while(true)
@@ -219,7 +219,7 @@ namespace QuizMaker
         /// <param name="min">The minimum supported int value</param>
         /// <param name="max">The maximum supported int value</param>
         /// <returns>The users input as an int</returns>
-        public int SetIntInput(string message, int min, int max)
+        public static int SetIntInput(string message, int min, int max)
         {
             bool isValidInput = false;
             int intInput;
@@ -249,7 +249,7 @@ namespace QuizMaker
         /// <param name="message">A message to be printed in the console</param>
         /// <param name="errMessage">An error message to be printed if that input is not valid</param>
         /// <returns>The char entered by the user</returns>
-        public char GetUserInputChar(string message, string errMessage)
+        public static char GetUserInputChar(string message, string errMessage)
         {
             char charInputUpper;
             bool isValidCharInput;
@@ -276,7 +276,7 @@ namespace QuizMaker
         /// <summary>
         /// Clears the console
         /// </summary>
-        public void ClearConsole()
+        public static void ClearConsole()
         {
             Console.Clear();
         }

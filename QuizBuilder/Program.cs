@@ -10,27 +10,27 @@ namespace QuizMaker
         {
             UserInterface ui = new UserInterface();
             QuizLogic ql = new QuizLogic();
-            char menuInput = ui.GetMenuInput();
+            char menuInput = UserInterface.GetMenuInput();
             
 
             while(true)
             {  
                 if(menuInput == Constants.CREATE_QUIZ)
                 {
-                    int numberOfQuestions = ui.GetNumberOfQuestions();
-                    List<Question> questionsList = ui.GetListOfQuestions(numberOfQuestions);
-                    ql.WriteXmlFile(questionsList);
+                    int numberOfQuestions = UserInterface.GetNumberOfQuestions();
+                    List<Question> questionsList = UserInterface.GetListOfQuestions(numberOfQuestions);
+                    QuizLogic.WriteXmlFile(questionsList);
                 }
 
                 if(menuInput == Constants.TAKE_QUIZ)
                 {
-                    int points = ql.GetPoints();
+                    int points = QuizLogic.GetPoints();
                     
-                    var questionList = ql.ReadXmlFile();
+                    var questionList = QuizLogic.ReadXmlFile();
                     if(questionList is null)
                     {
-                        ui.PrintFileDoesNotExistError();
-                        menuInput = ui.GetMenuInput();
+                        UserInterface.PrintFileDoesNotExistError();
+                        menuInput = UserInterface.GetMenuInput();
                         continue;
                     }
 
@@ -38,18 +38,18 @@ namespace QuizMaker
                     foreach(var question in questionList)
                     {
                         
-                        ui.PrintQuizHeader(numberOfQuestions, points);
+                        UserInterface.PrintQuizHeader(numberOfQuestions, points);
                         UserInterface.PrintQuestion(question.QuizQuestion);
                         UserInterface.PrintOptions(question.Options);
                         
 
-                        string selection = ui.CollectUserAnswers();
-                        bool isAnswerCorrect = ql.IsCorrectAnswer(selection, question.Options);
-                        points = ql.AddPoints(isAnswerCorrect);
+                        string selection = UserInterface.CollectUserAnswers();
+                        bool isAnswerCorrect = QuizLogic.IsCorrectAnswer(selection, question.Options);
+                        points = QuizLogic.AddPoints(isAnswerCorrect);
                     }
 
-                    ui.PrintFinalScore(numberOfQuestions, points);
-                    ql.ResetPoints();
+                    UserInterface.PrintFinalScore(numberOfQuestions, points);
+                    QuizLogic.ResetPoints();
 
                 }
 
@@ -58,7 +58,7 @@ namespace QuizMaker
                     break;
                 }
 
-                menuInput = ui.GetMenuInput();
+                menuInput = UserInterface.GetMenuInput();
 
             }
 
