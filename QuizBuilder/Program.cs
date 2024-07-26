@@ -8,11 +8,12 @@ namespace QuizMaker
         
         static void Main(string[] args)
         {
-            char menuInput = UserInterface.GetMenuInput();
+            char menuInput;
             
 
             while(true)
             {  
+                menuInput = UserInterface.GetMenuInput();
                 if(menuInput == Constants.CREATE_QUIZ)
                 {
                     int numberOfQuestions = UserInterface.GetNumberOfQuestions();
@@ -28,7 +29,6 @@ namespace QuizMaker
                     if(questionList is null)
                     {
                         UserInterface.PrintFileDoesNotExistError();
-                        menuInput = UserInterface.GetMenuInput();
                         continue;
                     }
 
@@ -55,8 +55,6 @@ namespace QuizMaker
                 {
                     break;
                 }
-
-                menuInput = UserInterface.GetMenuInput();
 
             }
 
