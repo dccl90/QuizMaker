@@ -23,10 +23,10 @@
     <Options>
       <Option correctAnswer="true" selector="A">8/2</Option>
       <Option correctAnswer="true" selector="B">12-8</Option>
-      <Option correctAnswer="false" selector="C">2+2</Option>
+      <Option correctAnswer="true" selector="C">2+2</Option>
       <Option correctAnswer="false" selector="D">13-6</Option>
       <Option correctAnswer="true" selector="E">24-20</Option>
-      <Option correctAnswer="false" selector="F">2*2</Option>
+      <Option correctAnswer="true" selector="F">2*2</Option>
     </Options>
   </Question>
 </ArrayOfQuestion>

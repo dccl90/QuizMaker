@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace QuizMaker
 {
-    public class QuizLogic
+    public static class QuizLogic
     {
         static Random random = new Random();
         static XmlSerializer serializer = new XmlSerializer(typeof(List<Question>));

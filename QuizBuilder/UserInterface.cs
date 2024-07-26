@@ -2,7 +2,7 @@
 
 namespace QuizMaker
 {
-    public class UserInterface
+    public static class UserInterface
     {
         /// <summary>
         /// A method for setting the users answers to a question

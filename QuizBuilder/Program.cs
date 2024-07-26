@@ -8,8 +8,6 @@ namespace QuizMaker
         
         static void Main(string[] args)
         {
-            UserInterface ui = new UserInterface();
-            QuizLogic ql = new QuizLogic();
             char menuInput = UserInterface.GetMenuInput();
             
 
